@@ -99,7 +99,7 @@ def ip_in_prefix(ip_address, prefix):
     return ip_network == prefix_network
 
 def check_packet(src,sprt,proto,dst,dprt):
-    
+    logs=open('log.txt','r').readlines()
 
     toaster=ToastNotifier()
     rules=open('rules.txt','r')
@@ -108,12 +108,11 @@ def check_packet(src,sprt,proto,dst,dprt):
     for item in rules.readlines():
         item=item.replace(' ','')
         item=item.split('\n')
-
-        if item[0]==packet:
+        if item[0]==packet and ((item[0]+'\n')not in logs):
             if platform.system()=='Windows':
                 check_admin()
                 add_rule('deneme',src)
-            toaster.show_toast('Notification!','Alert!',threaded=True,icon_path=None,duration=1)
+            toaster.show_toast('Notification!','Alert!',threaded=True,icon_path=None,duration=5)
             if Path('log.txt').is_file():
                 open('log.txt','a').write(str(packet)+'\n')
             else:
