@@ -287,8 +287,9 @@ class ids_app(tk.Frame):
 		# self.window.resizable(width=False,height=False)
 		self.window.protocol('WM_DELETE_WINDOW', self.exit)
 		# self.ip_lst=set()
-		open('rules.txt','w')
-		open('log.txt','w')
+	
+		# open('rules.txt','w')
+		# open('log.txt','w')
 		
 		
 		global label_var
@@ -522,13 +523,14 @@ def main():
 	# tst.start()
 	global dataset_Create
 	dataset_Create=1
+	
 	global interface
 	interface='Wi-Fi'
 	app=tk.Tk()
-	
-	func=Thread(target=sniff.main,args=[interface])
+	func=Thread(target=sniff.main)
 	func.daemon=True
 	func.start()
+
 	App=ids_app(app)
 
 
