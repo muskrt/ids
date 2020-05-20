@@ -240,6 +240,7 @@ from subprocess import PIPE,Popen
 import Rules as check
 import sniff
 from win10toast import ToastNotifier
+from pathlib import Path
 from tkinter import messagebox,simpledialog
 interface='Wi-Fi'
 
@@ -287,9 +288,11 @@ class ids_app(tk.Frame):
 		# self.window.resizable(width=False,height=False)
 		self.window.protocol('WM_DELETE_WINDOW', self.exit)
 		# self.ip_lst=set()
-	
-		# open('rules.txt','w')
-		# open('log.txt','w')
+		if not(Path('log.txt').is_file()) :
+			open('rules.txt','w')
+		if not(Path('rules.txt').is_file()) :
+			open('rules.txt','w')	
+		
 		
 		
 		global label_var
