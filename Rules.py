@@ -100,8 +100,9 @@ def ip_in_prefix(ip_address, prefix):
 
 def check_packet(src,sprt,proto,dst,dprt):
     logs=open('log.txt','r').readlines()
-
     toaster=ToastNotifier()
+    
+    
     rules=open('rules.txt','r')
     packet=(src+sprt+proto+dst+dprt)
     # print(packet)
