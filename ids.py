@@ -1,5 +1,224 @@
 
 
+# from subprocess import *
+# import os 
+# import  argparse
+# # call(["dir","/B"])
+# #print(help(Popen))
+# parser=argparse.ArgumentParser()
+# parser.add_argument('-t',help='first number',type=str)
+# args=vars(parser.parse_args())
+# print(args['t'])
+# os.system('taskkill /F /im python.exe')
+# os.system('taskkill /F /im pythonw.exe
+
+# import tkinter as tk
+# import socket
+# import os
+# from threading import Thread
+# import time
+# import psutil 
+# import time
+# import sys
+# import struct
+# from struct import unpack
+# from struct import pack
+# from ctypes import *
+# rx_tx=''
+
+
+
+
+
+# # import sniffer
+# s = ''
+# host = ''
+# data = ''
+# devam = ''
+# data_for_learn = {}
+# ip_lst = set()
+
+# class IP(Structure):
+# 	_fields_=[
+# 	('ihl',c_ubyte,4),
+# 	('version',c_ubyte,4),
+# 	('tos',c_ubyte,),
+# 	('len',c_ushort),
+# 	('id',c_ushort),
+# 	('offset',c_ushort),
+# 	('ttl',c_ubyte),
+# 	('protocol_num',c_ubyte),
+# 	('sum',c_ushort),
+# 	('src',c_ulong),
+# 	('dst',c_ulong)
+# 	]
+# 	def __new__(self,socket_buffer=None):
+# 		return self.from_buffer_copy(socket_buffer)
+# 	def __init__(self,socket_buffer=None):
+# 		self.protocol_map={1:'ICMP',6:'TCP',17:'UDP'}
+# 		self.src_address=socket.inet_ntoa(struct.pack('<L',self.src))
+# 		self.dst_address=socket.inet_ntoa(struct.pack('<L',self.dst))
+# 		# self.ihl=socket.inet_ntoa(struct.pack('B',self.ihl))
+
+# 		try:
+# 			self.protocol=self.protocol_map[self.protocol_num]
+# 		except :
+# 			self.protocol=str(self.protocol_num)
+
+
+# def analysis(veri):
+# 	pkt=veri
+# 	iphdr=unparck('!BBHHHBBH4s4s',pkt[0:20])
+# 	iplen=(iphdr[0]&0xf)*4
+# 	tcphdr=unpack('!HHLLBBHHH',pkt[iplen:iplen+20])
+# 	print(tcphdr)
+# 	# source=tcphdr[0]
+# 	# dest=tcphdr[1]
+# 	# seq=tcphdr[2]
+# 	# ack_seq=tcphdr[3]
+# 	# dr=tcphdr[4]
+# 	# flags=tcphdr[5]
+# 	# window=tcphdr[6]
+# 	# check=tcphdr[7]
+# 	# urg_ptr=tcphdr[8]
+# 	# doff=dr>>4
+# 	# fin=flags&0x01
+# 	# syn=flags&0x02
+# 	# rst=flags&0x04
+# 	# psh=flags&0x08
+# 	# ack=flags&0x10
+# 	# urg=flags&0x20
+# 	# ece=flags&0x40
+# 	# cwr=flags&0x80
+# 	# tcplen=(doff)*4
+# 	# h_size=iplen+tcplen
+# 	# data=pkt[h_size:]
+# 	# print(data)
+
+# def create_socket():
+# 	global s
+# 	global host
+# 	global data
+# 	global devam
+# 	s = socket.socket(socket.AF_INET, socket.SOCK_RAW,socket.IPPROTO_IP)
+# 	host = '255.255.255.255'
+	
+# 	s.bind((host, 0))
+	
+# 	s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 3)
+# 	s.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+# 	Thread(target=dinle).start()
+# 	try:
+# 		yield s
+# 	finally:
+# 		s.close()
+# def dinle():
+# 	global ip_lst
+# 	global devam
+# 	print('started...')
+# 	devam = ''
+# 	tst=''
+# 	try:
+# 		while True:
+# 			data = s.recvfrom(65565)[0]
+
+# 			if data:
+# 				ip_header=IP(data[0:20])
+				
+# 				print(ip_header.src_address,ip_header.dst_address)
+# 				tst=int(data[0:1])
+# 				try:
+# 					print(tst.decode())
+# 				except:
+# 					print('error')
+				
+# 			if devam == 1:
+# 				print('stopping')
+# 				break
+# 			else:
+# 				pass
+# 			time.sleep(1)
+# 		s.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
+# 		sys.exit()
+# 	except:
+# 		sys.exit()
+	
+# def menu():
+# 	adapters = ifaddr.get_adapters()
+# 	ips = {}
+# 	ips['exit'] = 1
+# 	ips['default'] = '255.255.255.255'
+
+# 	for adapter in adapters:
+# 		ips[adapter.nice_name] = ''
+# 		for ip in adapter.ips:
+# 			if len(ip.ip) < 33:
+# 				ips[adapter.nice_name] = ip.ip
+# 	keys = []
+# 	for key in enumerate(ips):
+# 		keys.append(key[1])
+# 	print(str(key[0])+' ### '+str(key[1])+'  --->>>  '+str(ips[key[1]]))
+# 	choice = int(input('>>'))
+# 	return ips[keys[choice]]
+
+
+
+
+
+# 	# global data
+# 	# window=tk.Tk()
+# 	# window.configure(width=600, height=600)
+# 	# window.resizable(width=False,height=False)
+# 	# tst=tk.StringVar()
+# 	# label1=tk.Label(window,text=tst,width=15,height=15)
+# 	# label1.pack()
+# 	# Thread(target=degis,args=(label1,window)).start()
+
+# 	# window.mainloop()
+
+# def sniff():
+# 	global s
+# 	global host
+# 	global data
+# 	global devam
+# 	s = socket.socket(socket.AF_INET, socket.SOCK_RAW,socket.IPPROTO_IP)
+# 	host = '255.255.255.255'
+# 	if host == 1:
+# 		sys.exit()
+# 	#print(host)
+# 	#print(socket.gethostname())
+# 	#print(help(s.ioctl))
+# 	s.bind((host, 0))
+# 	# print(s.ioctl)
+# 	s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 3)
+# 	s.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+# 	Thread(target=dinle).start()
+# 	# window_thread=Thread(target=win)
+# 	#window_thread.start()
+# 	#s.ioctl(socket.SIO_RCVALL,socket.RCVALL_OFF)
+# 	count = 0
+# 	while True:
+# 		if data:
+# 			if not(data[0].__contains__('192')):
+# 		# sys.stdout.write(data[0])
+
+# 				count += 1
+# 			if count == 50:
+# 				count = 0
+# 			try:
+# 				for sec in range(5, 0, -1):
+# 					print('\rwaiting for %d ...'%sec, flush=True, end='')
+# 					time.sleep(1.5)
+# 				print('\n')
+# 			except KeyboardInterrupt:
+# 				devam = input('\n:')
+# 				if devam:
+# 					window_thread._stop()
+# 					sys.exit()
+# 					break
+
+
+
 import tkinter as tk
 import socket
 import os
@@ -22,6 +241,8 @@ import Rules as check
 import sniff
 from win10toast import ToastNotifier
 from pathlib import Path
+import ifaddr
+from functools import partial
 from tkinter import messagebox,simpledialog
 interface='Wi-Fi'
 
@@ -40,7 +261,8 @@ dst_ip=''
 dst_port=''
 src_port=''
 veri=''
- 
+
+
 class ids_app(tk.Frame):
 	
 
@@ -58,10 +280,10 @@ class ids_app(tk.Frame):
 			old_value=new_value
 			old_value2=new_value2
 			
-	def __init__(self,window):
+	def __init__(self,window,startwindow):
 	
 		tk.Frame.__init__(self,master=window)
-
+		startwindow.destroy()
 		self.window=window
 		width_of_screen=self.window.winfo_screenwidth()/2
 		height_of_screen=self.window.winfo_screenheight()/2
@@ -76,8 +298,8 @@ class ids_app(tk.Frame):
 		
 		
 		
-		global label_var
-		label_var=tk.StringVar()
+		# global label_var
+		# label_var=tk.StringVar()
 		
 
 		self.main_screen()
@@ -156,24 +378,58 @@ class ids_app(tk.Frame):
 	async def tstasy(self):
 		print('async deneme')		
 	def rule_lst(self):
+		
 	 	rulewindow=tk.Tk()
+	 	rules=[]
+	 	def click(delete,event=''):
+	 		print('clicked')
+	 		grb='tst'
+	 		if len(textlst.curselection())>0:
+	 			selected2=int(textlst.curselection()[0])
+	 			grb=textlst.get(selected2)
+	 		
+	 		if delete=='del':
+	 			
+	 			if grb!='tst' :
+		 			
+		 			print(delete)
+		 			for row in rules:
+		 				row=(row.replace(' ',''))
+		 				if row==(grb.replace(' ','')):
+		 					print('found')
+		 					rules.remove(row)
+		 			open('rules.txt','w').write('')
+		 			for i in rules:	
+		 				open('rules.txt','a').write(i)
+		 			messagebox.showinfo('info','Rule Deleted')
+		 			try:
+		 				textlst.delete(0,tk.END)
+		 			except:
+		 				print('error')
+		 			with open('rules.txt','r') as file:
+	 					for row in file.readlines():
+	 						textlst.insert(tk.END,row)
+	 			elif grb=='tst':
+	 				messagebox.showinfo('Info','Please click the rule first')
 	 	width_of_screen=self.window.winfo_screenwidth()/2
 	 	height_of_screen=self.window.winfo_screenheight()/2
 	 	rulewindow.geometry("500x340+%d+%d"%( (width_of_screen-250),(height_of_screen-190)  ))
 	 	rulewindow.resizable(width=False,height=False)
 	 	rulelist=tk.Frame(rulewindow)
 	 	textlst=tk.Listbox(rulelist,width=50,height=20)
+	 	textlst.bind('<<ListboxSelect>>',click)
 	 	texscrol=tk.Scrollbar(rulelist)
 	 	texscrol.config(command=textlst.yview)
 	 	textlst.config(yscrollcommand=texscrol.set)
-
-
+	 	del_button=tk.Button(rulelist,command=partial(click,'del'),text='Delete')
+	 	del_button.grid(row=0,column=2,sticky='e',padx=5)
 	 	texscrol.grid(row=0,column=1,sticky='nes')
 	 	textlst.grid(row=0,column=0)
 	 	print(textlst)
 	 	rulelist.pack()
 	 	with open('rules.txt','r') as file:
 	 		for row in file.readlines():
+	 			rules.append(row)
 	 			textlst.insert(tk.END,row)
 	 	rulewindow.mainloop()
 		
@@ -300,25 +556,48 @@ class ids_app(tk.Frame):
 
 def func():
 	pass
+class get_interface(tk.Frame):
+	def start_ids(self,interface,event=''):
+		
+		func=Thread(target=sniff.main,args=[interface])
+		func.daemon=True
+		func.start()
+		app=tk.Tk()
+		App=ids_app(app,self.window)
+		app.mainloop()
+
+	def __init__(self):
+		window=tk.Tk()
+		tk.Frame.__init__(self,master=window)
+		self.window=window
+		width_of_screen=self.window.winfo_screenwidth()/2
+		height_of_screen=self.window.winfo_screenheight()/2
+
+		self.window.geometry("500x340+%d+%d"%( (width_of_screen-250),(height_of_screen-190)  ))
+		self.window.resizable(width=False,height=False)
+		x=''
+		for i in psutil.net_if_addrs().keys():
+			button=(i+'x')
+			button=tk.Button(self.window,command=partial(self.start_ids,i),text=i)
+			button.pack()
+		
+
+		
+
+		self.window.mainloop()
 
 def main():
 	# tst=	Thread(target=sniff)
 	# tst.daemon=True
 	# tst.start()
+	# get_interface()
+
 	global dataset_Create
 	dataset_Create=1
-	
+	get_interface()
 	global interface
 	interface='Wi-Fi'
-	app=tk.Tk()
-	func=Thread(target=sniff.main)
-	func.daemon=True
-	func.start()
-
-	App=ids_app(app)
-
-
-	app.mainloop()
+	
 
 if __name__ == '__main__':
 	main()
@@ -329,3 +608,239 @@ if __name__ == '__main__':
 
 
 
+# import socket
+# from threading import Thread
+# import sys
+# import os
+# import time
+# from sys import stdout
+# from sys import argv
+# import ifaddr
+# import tkinter as tk
+# import pandas as pd
+# global s
+# global host
+# global data
+# global devam
+# global data_for_learn
+
+
+# def dinle():
+# 	global s
+# 	global data
+# 	global devam
+# 	global data_for_learn
+# 	data_for_learn ={}
+	
+	
+# 	print('started...')
+# 	devam=''
+# 	while True:
+# 		data=s.recvfrom(65565)[1]
+		
+# 		if devam =='1':
+# 			sys.exit()
+# 		else:
+# 			pass
+			
+# 			# num=int.from_bytes(data[9:10],byteorder='big')
+# 			# if count ==80:
+# 			# 	sys.exit()
+# 			# 	break
+# def menu():
+# 	adapters=ifaddr.get_adapters()
+# 	ips={}
+# 	ips['exit']=1
+# 	ips['default']='255.255.255.255'
+
+# 	for adapter in adapters:
+# 		ips[adapter.nice_name]=''
+# 		for ip in adapter.ips:
+# 			if len(ip.ip)<33:
+# 				ips[adapter.nice_name]=ip.ip
+# 	keys=[]
+# 	for key in enumerate(ips):
+# 		keys.append(key[1])
+# 		print(str(key[0])+' ### '+str(key[1])+'  --->>>  '+str(ips[key[1]]))
+# 	choice=int(input('>>'))
+# 	return ips[keys[choice]]
+
+# def win():
+	
+# 	def degis(label1,window):
+# 		sayac=0
+# 		while True:
+# 			if data:
+# 				if not(data[0].__contains__('192')):
+# 					label1['text']+=str(data[0]+'\n')
+# 					if sayac==4:
+# 						time.sleep(1)
+# 					sayac+=1
+# 			if sayac==5:
+# 				sayac=0
+# 				label1['text']=' '
+# 			if devam:
+# 				window.destroy()
+# 				this._stop()
+			
+	
+# 	global data
+# 	window=tk.Tk()
+# 	window.configure(width=600, height=600)
+# 	window.resizable(width=False,height=False)
+# 	tst=tk.StringVar()
+# 	label1=tk.Label(window,text=tst,width=15,height=15)
+# 	label1.pack()
+# 	Thread(target=degis,args=(label1,window)).start()
+
+# 	window.mainloop()
+
+
+# def ids():	
+# 	global s
+# 	global host
+# 	global data
+# 	global devam
+
+
+# 	s=socket.socket(socket.AF_INET,socket.SOCK_RAW,socket.IPPROTO_IP)
+
+# 	host=menu()
+# 	if host==1:
+# 		sys.exit()
+# 	#print(host)
+# 	#print(socket.gethostname())
+# 	#print(help(s.ioctl))
+# 	s.bind((host,0))
+# 	# print(s.ioctl)
+# 	s.setsockopt(socket.IPPROTO_IP,socket.IP_HDRINCL,3)
+# 	s.ioctl(socket.SIO_RCVALL,socket.RCVALL_ON)
+# 	Thread(target=dinle).start()
+# 	window_thread=Thread(target=win)
+# 	#window_thread.start()
+
+# 	#s.ioctl(socket.SIO_RCVALL,socket.RCVALL_OFF)
+
+# 	data=()
+# 	count=0
+
+# 	while True:
+# 		if data:
+# 			if not(data[0].__contains__('192')):
+# 				# sys.stdout.write(data[0])
+# 				print(data[0])
+# 				count+=1
+# 		if count==50:
+# 			count=0
+# 			try: 
+# 				for sec in range(5,0,-1):
+# 					print('\rwaiting for %d ...'%sec,flush=True,end='')
+# 					time.sleep(1)	
+# 				print('\n')	
+# 			except KeyboardInterrupt:
+# 				devam=input('\n:')
+# 				if devam:
+# 					window_thread._stop()
+# 					sys.exit()
+# 					break
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''----------=======-----packet-creaation-----------------------'''
+#import socket
+
+# s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+# s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+
+# ip_header  = b'\x45\x00\x00\x28'  # Version, IHL, Type of Service | Total Length
+# ip_header += b'\xab\xcd\x00\x00'  # Identification | Flags, Fragment Offset
+# ip_header += b'\x40\x06\xa6\xec'  # TTL, Protocol | Header Checksum
+# ip_header += b'\x0a\x0a\x0a\x02'  # Source Address
+# ip_header += b'\x0a\x0a\x0a\x01'  # Destination Address
+
+# tcp_header  = b'\x30\x39\x00\x50' # Source Port | Destination Port
+# tcp_header += b'\x00\x00\x00\x00' # Sequence Number
+# tcp_header += b'\x00\x00\x00\x00' # Acknowledgement Number
+# tcp_header += b'\x50\x02\x71\x10' # Data Offset, Reserved, Flags | Window Size
+# tcp_header += b'\xe6\x32\x00\x00' # Checksum | Urgent Pointer
+
+# packet = ip_header + tcp_header
+# s.sendto(packet, ('10.10.10.1', 0))
+############
+'''
+import socket
+
+s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW)
+s.bind(("eth0", 0))
+
+ethernet  = b'\x00\x0c\x29\xd3\xbe\xd6' # MAC Adresse Ziel
+ethernet += b'\x00\x0c\x29\xe0\xc4\xaf' # MAC Adresse Quelle
+ethernet += b'\x08\x00'                 # Protocol-Type: IPv4
+
+ip_header  = b'\x45\x00\x00\x28'  # Version, IHL, Type of Service | Total Length
+ip_header += b'\xab\xcd\x00\x00'  # Identification | Flags, Fragment Offset
+ip_header += b'\x40\x06\xa6\xec'  # TTL, Protocol | Header Checksum
+ip_header += b'\x0a\x0a\x0a\x02'  # Source Address
+ip_header += b'\x0a\x0a\x0a\x01'  # Destination Address
+
+tcp_header  = b'\x30\x39\x00\x50' # Source Port | Destination Port
+tcp_header += b'\x00\x00\x00\x00' # Sequence Number
+tcp_header += b'\x00\x00\x00\x00' # Acknowledgement Number
+tcp_header += b'\x50\x02\x71\x10' # Data Offset, Reserved, Flags | Window Size
+tcp_header += b'\xe6\x32\x00\x00' # Checksum | Urgent Pointer
+
+packet = ethernet + ip_header + tcp_header
+s.send(packet)
+'''
+###-------------======---packet-creation----------------------###
+
+
+
+
+
+
+
+
+
+
+
+
+
+# import socket
+
+# # the public network interface
+# HOST = socket.gethostbyname(socket.gethostname())
+
+# # create a raw socket and bind it to the public interface
+# s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_IP)
+# s.bind(('192.168.43.69', 0))
+
+# # Include IP headers
+# s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+
+# # receive all packages
+# s.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+
+# # receive a package
+
+# print(s.recvfrom(443))
+
+# # disabled promiscuous mode
+# s.ioctl(socket.SIO_RCVALL, socket.RCVALL_OFF)
