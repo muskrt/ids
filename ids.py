@@ -291,6 +291,7 @@ class ids_app(tk.Frame):
 		# self.window.resizable(width=False,height=False)
 		self.window.protocol('WM_DELETE_WINDOW', self.exit)
 		# self.ip_lst=set()
+		self.window.title('IDS prototype')
 		if not(Path('log.txt').is_file()) :
 			open('rules.txt','w')
 		if not(Path('rules.txt').is_file()) :
@@ -362,26 +363,35 @@ class ids_app(tk.Frame):
 			with open('rules.txt','a') as file:
 				file.write('\n'+str(self.rule_ADD.get('1.0',tk.END).replace('\n','')))
 				file.close()
-				messagebox.showinfo("Info","kural eklendi")	
+				messagebox.showinfo("Info","Rule added")	
 				
 		
 		self.add_rule=tk.Tk()
 		self.add_rule.config(bg='green')
+		self.add_rule.title('Add Rule')
 		width_of_screen=self.window.winfo_screenwidth()/2
 		height_of_screen=self.window.winfo_screenheight()/2
 		self.rule_ADD=tk.Text(self.add_rule,width=80,height=8)
 		self.rule_ADD.pack(pady=5)
-		self.rule_addbtn=tk.Button(self.add_rule,text='ekle',command=ekle).pack(pady=5)
+		self.rule_addbtn=tk.Button(self.add_rule,text='Add',command=ekle).pack(pady=5)
 		self.add_rule.geometry("500x340+%d+%d"%( (width_of_screen-250),(height_of_screen-190)  ))
 		self.add_rule.resizable(width=False,height=False)
 		self.add_rule.mainloop()
-	async def tstasy(self):
-		print('async deneme')		
+		
 	def rule_lst(self):
 		
 	 	rulewindow=tk.Tk()
-	 	rules=[]
+	 	rulewindow.title('Rule List')
+	 	# for item in open('rules.txt','r').readlines():
+	 	# 	item=item.replace(' ','')
+	 	# 	item=item.replace('\n','')
+	 		
+	 	# 	rules.append(item)
+	 	# 	print(rules)
+	 	
+
 	 	def click(delete,event=''):
+
 	 		print('clicked')
 	 		grb='tst'
 	 		if len(textlst.curselection())>0:
@@ -389,18 +399,32 @@ class ids_app(tk.Frame):
 	 			grb=textlst.get(selected2)
 	 		
 	 		if delete=='del':
-	 			
+	 			textlst.delete(0,tk.END)
+	 			rules=[]
+	 			with open('rules.txt','r') as file:
+		 			for row in file.readlines():
+		 				row=row.replace(' ','')
+		 				row=row.replace('\n','')
+		 				rules.append(row)
+		 				textlst.insert(tk.END,row)
 	 			if grb!='tst' :
 		 			
 		 			print(delete)
 		 			for row in rules:
-		 				row=(row.replace(' ',''))
-		 				if row==(grb.replace(' ','')):
-		 					print('found')
+
+		 				
+		 				grb=grb.replace(' ','')
+		 				grb=grb.replace('\n','')
+		 				if row==grb:
 		 					rules.remove(row)
-		 			open('rules.txt','w').write('')
+		 				
+		 			try:
+			 			file=open('rules.txt','w+')
+			 			file.write(' ')
+			 		except:
+			 			print('error')
 		 			for i in rules:	
-		 				open('rules.txt','a').write(i)
+		 				open('rules.txt','a+').write(i+'\n')
 		 			messagebox.showinfo('info','Rule Deleted')
 		 			try:
 		 				textlst.delete(0,tk.END)
@@ -427,8 +451,11 @@ class ids_app(tk.Frame):
 	 	textlst.grid(row=0,column=0)
 	 	print(textlst)
 	 	rulelist.pack()
-	 	with open('rules.txt','r') as file:
+	 	rules=[]
+ 		with open('rules.txt','r') as file:
 	 		for row in file.readlines():
+	 			row=row.replace(' ','')
+	 			row=row.replace('\n','')
 	 			rules.append(row)
 	 			textlst.insert(tk.END,row)
 	 	rulewindow.mainloop()
@@ -436,7 +463,7 @@ class ids_app(tk.Frame):
 	def rule_matches(self):
 
 		rulewindow=tk.Tk()
-	
+		rulewindow.title('Logs')
 		width_of_screen=self.window.winfo_screenwidth()/2
 		height_of_screen=self.window.winfo_screenheight()/2
 
@@ -479,7 +506,7 @@ class ids_app(tk.Frame):
 		self.window.after(1000, self.bandwidth_guncelle)
 	def main_screen(self):
 		self.menu_frame=tk.Frame(self.window,bg='green',width=200,height=680)
-		self.label_menu=tk.Label(self.menu_frame,text='menu',anchor='nw',bg='blue',width=30)
+		self.label_menu=tk.Label(self.menu_frame,text='Menu',anchor='nw',bg='blue',width=30)
 		self.btn1=tk.Button(self.menu_frame,text='add rule',width=30,command=self.add_rule)
 		self.btn2=tk.Button(self.menu_frame,text='rule matches',width=30,command=self.rule_matches)
 		self.btn3=tk.Button(self.menu_frame,text='rule list',width=30,command=self.rule_lst)
@@ -496,7 +523,7 @@ class ids_app(tk.Frame):
 
 
 		self.trafic_frame=tk.Frame(self.window,bg='#ccffcc',width=800,height=340)
-		self.label_ip=tk.Label(self.trafic_frame,text='ip trafik',anchor='nw',justify='left',bg='red')
+		self.label_ip=tk.Label(self.trafic_frame,text='ip trafic',anchor='nw',justify='left',bg='red')
 		self.trafic_frame.grid_propagate(0)
 
 		self.lst=tk.Listbox(self.trafic_frame,width=130,height=18)
@@ -526,7 +553,7 @@ class ids_app(tk.Frame):
 
 
 		self.analysis_frame=tk.Frame(self.window,bg='green',width=800,height=340)
-		self.label_trafik_istatistik=tk.Label(self.analysis_frame,text='Raw Data',anchor='nw',justify='left',bg='red')
+		self.label_trafik_istatistik=tk.Label(self.analysis_frame,text='Raw Data',anchor='ne',justify='left',bg='red')
 		self.analysis_frame.grid_propagate(0)
 		self.rawlist=tk.Listbox(self.analysis_frame,width=130,height=18)
 		self.rawscrol=tk.Scrollbar(self.analysis_frame)
@@ -536,7 +563,7 @@ class ids_app(tk.Frame):
 		self.rawscrol.grid(row=1,column=1,sticky='nes')
 		self.rawlist.grid(row=1,column=0)
 
-		self.label_trafik_istatistik.grid(row=0,column=0,sticky='w')
+		self.label_trafik_istatistik.grid(row=0,column=0)
 		
 
 
@@ -570,6 +597,7 @@ class get_interface(tk.Frame):
 		window=tk.Tk()
 		tk.Frame.__init__(self,master=window)
 		self.window=window
+		self.window.title('Choose The Interface')
 		width_of_screen=self.window.winfo_screenwidth()/2
 		height_of_screen=self.window.winfo_screenheight()/2
 

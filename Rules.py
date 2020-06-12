@@ -19,7 +19,7 @@ def check_admin():
 def add_rule(rule_name, src):
     """ Add rule to Windows Firewall """
     command1=f"netsh advfirewall firewall add rule name={rule_name}  dir=out remoteip={src} action=block "
-    command2=f"netsh advfirewall firewall add rule name={rule_name}  dir=in remoteip={src} action=block "
+    command2=f"netsh advfirewall firewall add rule name={rule_name}  dir=in remoteip={src}  action=block "
     subprocess.call(
         command1, 
         shell=True, 
@@ -109,6 +109,7 @@ def check_packet(src,sprt,proto,dst,dprt):
     for item in rules.readlines():
         item=item.replace(' ','')
         item=item.split('\n')
+        
         if item[0]==packet and ((item[0]+'\n')not in logs):
             if platform.system()=='Windows':
                 check_admin()
